@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Code2, Bot, BookOpen, Users, Mail, Linkedin, Github, Download } from 'lucide-react';
 import { socialLinks } from '../../config/socialLinks';
 
@@ -25,6 +26,15 @@ const passions = [
 ];
 
 const About = () => {
+  const [profileSrc, setProfileSrc] = useState('');
+
+  useEffect(() => {
+    fetch('/demilade-profile-new.b64')
+      .then((response) => response.text())
+      .then((base64) => setProfileSrc(`data:image/webp;base64,${base64.trim()}`))
+      .catch(() => setProfileSrc('/demilade-profile.webp'));
+  }, []);
+
   return (
     <section id="about" className="bg-[#fffdfd] text-[#1d1b1c]">
       <div className="relative overflow-hidden border-b border-[#f8d8e1]">
@@ -83,12 +93,16 @@ const About = () => {
               {Array.from({ length: 20 }).map((_, i) => <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#f9b6c7]" />)}
             </div>
             <div className="relative overflow-hidden rounded-[1.8rem] bg-[#f6eeee] p-2 shadow-[0_22px_60px_rgba(205,123,147,0.2)] ring-1 ring-[#f4d3dc]">
-              <img
-                src="/demilade-profile.webp"
-                alt="Demilade Adewole"
-                className="aspect-[1/1.08] w-full rounded-[1.45rem] object-cover"
-                style={{ objectPosition: 'center 35%', filter: 'contrast(1.02) saturate(1.02)' }}
-              />
+              {profileSrc ? (
+                <img
+                  src={profileSrc}
+                  alt="Demilade Adewole"
+                  className="aspect-[1/1.08] w-full rounded-[1.45rem] object-cover"
+                  style={{ objectPosition: 'center 35%' }}
+                />
+              ) : (
+                <div className="aspect-[1/1.08] w-full animate-pulse rounded-[1.45rem] bg-[#f3e7ea]" aria-label="Loading profile photo" />
+              )}
               <div className="pointer-events-none absolute bottom-5 right-7 -rotate-6 text-right font-serif text-lg italic leading-6 text-white drop-shadow-md">
                 building for<br />people + purpose ♡
               </div>
