@@ -1,13 +1,8 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import DarkModeToggle from '../DarkModeToggle';
-import { useDarkMode } from '../../contexts/DarkModeContext';
-import { useThemeColors, withAlpha } from '../../hooks/useThemeColors';
+import { Menu, X, Download } from 'lucide-react';
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const themeColors = useThemeColors();
 
   const goTo = (id: string) => {
     if (window.location.pathname !== '/') {
@@ -26,62 +21,57 @@ const Navigation = () => {
 
   return (
     <nav
-      className="navigation"
       aria-label="Main navigation"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        width: '100%',
-        zIndex: 99999,
-        padding: '1rem 0',
-        borderBottom: `1px solid ${themeColors.navigation.border}`,
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
-        background: withAlpha(isDarkMode ? themeColors.colors.dark[950] : themeColors.colors.pink[50], 0.78)
-      }}
+      className="fixed inset-x-0 top-0 z-[99999] border-b border-white/5 bg-[#0e0b0d] text-white shadow-sm"
     >
-      <div className="nav-container">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
         <button
-          className="signature-name"
-          onClick={() => { window.location.href = '/'; }}
-          style={{ cursor: 'pointer', color: themeColors.colors.pink[500], background: 'none', border: 'none', WebkitTextFillColor: themeColors.colors.pink[500] }}
+          onClick={() => window.location.href = '/'}
+          className="border-0 bg-transparent p-0 font-serif text-2xl italic tracking-wide text-[#ef7c9c] md:text-3xl"
           aria-label="Demilade Adewole - Go to homepage"
         >
-          Demilade Adewole
+          Demilade Adewole ✦
         </button>
 
-        <div className="nav-tabs desktop-nav">
+        <div className="hidden items-center gap-7 md:flex">
+          <button onClick={() => goTo('about')} className="border-0 bg-transparent px-1 py-2 text-sm font-semibold text-[#f08aa6]">Home</button>
           {tabs.map((tab) => (
-            <button key={tab.id} onClick={() => goTo(tab.id)} className="nav-tab" style={{ color: themeColors.text.accent }}>
+            <button key={tab.id} onClick={() => goTo(tab.id)} className="border-0 bg-transparent px-1 py-2 text-sm font-medium text-white/90 transition hover:text-[#f08aa6]">
               {tab.label}
             </button>
           ))}
-          <a href="/contact" className="nav-tab" style={{ color: themeColors.text.accent }}>Contact</a>
-          <div className="ml-4"><DarkModeToggle checked={isDarkMode} onChange={toggleDarkMode} /></div>
+          <a href="/contact" className="px-1 py-2 text-sm font-medium text-white/90 transition hover:text-[#f08aa6]">Contact</a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="ml-1 inline-flex items-center gap-2 rounded-lg border border-[#f2a0b7] px-4 py-2.5 text-sm font-semibold text-[#ffd6e1] transition hover:bg-[#ef5f85] hover:text-white"
+          >
+            <Download size={16} /> Download Resume
+          </a>
         </div>
 
         <button
-          className="mobile-menu-btn"
+          className="rounded-lg border border-white/15 bg-white/5 p-2 text-white md:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
-          style={{ background: isDarkMode ? themeColors.colors.dark[800] : themeColors.colors.white, border: `1px solid ${themeColors.colors.pink[200]}`, borderRadius: '12px', padding: '10px', color: themeColors.colors.pink[500] }}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <div className="mobile-menu open" style={{ background: themeColors.navigation.mobile, padding: '1rem' }}>
-          {tabs.map((tab) => (
-            <button key={tab.id} onClick={() => goTo(tab.id)} className="mobile-nav-tab" style={{ color: themeColors.text.accent, width: '100%' }}>
-              {tab.label}
-            </button>
-          ))}
-          <a href="/contact" className="mobile-nav-tab" style={{ color: themeColors.text.accent, width: '100%', display: 'block' }}>Contact</a>
-          <div className="mt-4 flex justify-center"><DarkModeToggle checked={isDarkMode} onChange={toggleDarkMode} /></div>
+        <div className="border-t border-white/10 bg-[#0e0b0d] px-6 pb-5 pt-3 md:hidden">
+          <div className="flex flex-col gap-1">
+            <button onClick={() => goTo('about')} className="rounded-md bg-transparent px-3 py-3 text-left text-[#f08aa6]">Home</button>
+            {tabs.map((tab) => (
+              <button key={tab.id} onClick={() => goTo(tab.id)} className="rounded-md bg-transparent px-3 py-3 text-left text-white/90">
+                {tab.label}
+              </button>
+            ))}
+            <a href="/contact" className="rounded-md px-3 py-3 text-white/90">Contact</a>
+          </div>
         </div>
       )}
     </nav>
