@@ -1,170 +1,123 @@
-import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, MapPin, GraduationCap, Briefcase, Sparkles } from 'lucide-react';
-import { useDarkMode } from '../../contexts/DarkModeContext';
-import { useThemeColors } from '../../hooks/useThemeColors';
+import { Code2, Bot, BookOpen, Users, Mail, Linkedin, Github, Download } from 'lucide-react';
 import { socialLinks } from '../../config/socialLinks';
-import profileImageBase64 from '../../assets/demilade-profile.txt?raw';
+
+const passions = [
+  {
+    icon: Code2,
+    title: 'Application Modernization',
+    text: "Breathing new life into legacy systems so they're faster, more scalable, and ready for what's next."
+  },
+  {
+    icon: Bot,
+    title: 'Automation',
+    text: 'Building tools and automations that eliminate repetitive work and give people back their time.'
+  },
+  {
+    icon: BookOpen,
+    title: 'Continuous Learning',
+    text: 'Tech moves fast. I stay curious, explore new things, and enjoy the process of growing.'
+  },
+  {
+    icon: Users,
+    title: 'Real Impact',
+    text: "I care about building technology that solves real problems and makes someone's day-to-day better."
+  }
+];
 
 const About = () => {
-  const { isDarkMode } = useDarkMode();
-  const themeColors = useThemeColors();
-
-  const roles = ['Agile Developer', 'Software Engineer', 'Full-Stack Developer', 'Automation Builder'];
-  const profileSrc = `data:image/webp;base64,${profileImageBase64.trim()}`;
-
   return (
-    <section
-      id="about"
-      className="min-h-screen flex items-center py-24"
-      style={{
-        background: themeColors.background.sections?.about || themeColors.background.gradient,
-        transition: 'background 0.3s ease-in-out'
-      }}
-    >
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
-          <div>
-            <p
-              className="text-sm md:text-base font-semibold tracking-[0.22em] uppercase mb-4"
-              style={{ color: themeColors.colors.pink[500] }}
-            >
-              Software • Fintech • Automation
-            </p>
+    <section id="about" className="bg-[#fffdfd] text-[#1d1b1c]">
+      <div className="relative overflow-hidden border-b border-[#f8d8e1]">
+        <div className="absolute -top-24 right-12 h-72 w-72 rounded-full bg-[#ffdce7] blur-3xl opacity-60" />
+        <div className="absolute bottom-8 left-[49%] hidden lg:grid grid-cols-4 gap-2 opacity-70" aria-hidden="true">
+          {Array.from({ length: 16 }).map((_, i) => <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#f598b1]" />)}
+        </div>
 
-            <h1
-              className="text-5xl md:text-7xl font-bold leading-tight mb-5"
-              style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.dark[800] }}
-            >
-              Hi, I&apos;m Demilade Adewole.
+        <div className="mx-auto grid min-h-[720px] max-w-7xl items-center gap-14 px-6 pb-16 pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pt-28">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-lg bg-[#ffe3ea] px-4 py-2 text-sm font-semibold text-[#262123] shadow-sm">
+              <span className="text-[#f25f87]">✦</span>
+              Curious by nature. Impact-driven by choice.
+            </div>
+
+            <h1 className="mb-5 font-serif text-5xl font-semibold leading-[0.98] tracking-[-0.03em] sm:text-6xl lg:text-7xl">
+              Hi, I&apos;m
+              <span className="mt-2 block text-[#ef5f85]">Demilade Adewole</span>
             </h1>
 
-            <div className="flex flex-wrap gap-2 mb-7">
-              {roles.map((role) => (
-                <span
-                  key={role}
-                  className="px-3 py-1.5 rounded-full text-sm font-medium"
-                  style={{
-                    backgroundColor: isDarkMode ? themeColors.colors.dark[800] : themeColors.colors.white,
-                    color: themeColors.colors.pink[500],
-                    border: `1px solid ${themeColors.colors.pink[200]}`
-                  }}
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
+            <p className="mb-6 font-serif text-2xl text-[#2d2729]">
+              Software Engineer <span className="text-[#d3a0ad]">|</span> Application Modernization
+            </p>
 
-            <div className="space-y-4 max-w-3xl mb-8">
-              <p
-                className="text-lg md:text-xl leading-relaxed"
-                style={{ color: themeColors.text.secondary }}
-              >
-                I&apos;ve always been drawn to the part of tech where you take something complicated, outdated, or repetitive and make it work better. I like digging into how a system works, finding the friction, and building something cleaner on the other side.
-              </p>
+            <p className="max-w-xl text-[1.08rem] leading-8 text-[#5e5960]">
+              I modernize legacy systems, automate the repetitive, and build software that makes life easier for real people. Right now, I&apos;m focused on building a career around impactful systems, continuous learning, and solving problems that actually matter.
+            </p>
 
-              <p
-                className="text-base md:text-lg leading-relaxed"
-                style={{ color: themeColors.text.secondary }}
-              >
-                I&apos;m especially passionate about application modernization, automation, and learning new ways to solve real problems. For me, the best kind of engineering is practical: work that saves people time, makes a process easier, or turns an idea into something people can actually rely on.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3 mb-8">
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-action-btn inline-flex items-center gap-2 px-5 py-3"
-              >
-                <Linkedin size={18} /> LinkedIn
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4 text-sm font-medium text-[#353034]">
+              <a href={`mailto:${socialLinks.email}`} className="inline-flex items-center gap-2 hover:text-[#ef5f85]">
+                <Mail size={20} className="text-[#ef5f85]" /> {socialLinks.email}
               </a>
-              <a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-action-btn inline-flex items-center gap-2 px-5 py-3"
-              >
-                <Github size={18} /> GitHub
+              <span className="hidden h-5 w-px bg-[#e7cbd3] sm:block" />
+              <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-[#ef5f85]">
+                <Linkedin size={20} className="text-[#ef5f85]" /> LinkedIn
               </a>
-              <Link to="/contact" className="hero-action-btn inline-flex items-center gap-2 px-5 py-3">
-                <Mail size={18} /> Contact
-              </Link>
+              <span className="hidden h-5 w-px bg-[#e7cbd3] sm:block" />
+              <a href={socialLinks.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-[#ef5f85]">
+                <Github size={20} className="text-[#ef5f85]" /> GitHub
+              </a>
             </div>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm" style={{ color: themeColors.text.secondary }}>
-              <span className="inline-flex items-center gap-2"><MapPin size={16} /> Northern Virginia</span>
-              <span className="inline-flex items-center gap-2"><Briefcase size={16} /> Freddie Mac</span>
-              <span className="inline-flex items-center gap-2"><GraduationCap size={16} /> M.S. Computer Science</span>
-            </div>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#ef5f85] px-6 py-3.5 font-semibold text-white shadow-[0_12px_28px_rgba(239,95,133,0.28)] transition hover:-translate-y-0.5 hover:bg-[#e6537a]"
+            >
+              <Download size={18} /> Download Resume
+            </a>
           </div>
 
-          <div className="relative max-w-md mx-auto lg:mx-0 w-full">
-            <div
-              className="absolute -inset-3 rounded-[2.2rem] blur-2xl opacity-40"
-              style={{ backgroundColor: themeColors.colors.pink[300] }}
-              aria-hidden="true"
-            />
-
-            <div
-              className="relative rounded-[2rem] p-4 md:p-5 shadow-2xl"
-              style={{
-                backgroundColor: isDarkMode ? themeColors.colors.dark[800] : themeColors.colors.white,
-                border: `1px solid ${themeColors.colors.pink[200]}`
-              }}
-            >
-              <div className="relative overflow-hidden rounded-[1.55rem] aspect-square">
-                <img
-                  src={profileSrc}
-                  alt="Demilade Adewole"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 34%' }}
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-28"
-                  style={{
-                    background: 'linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.55) 100%)'
-                  }}
-                  aria-hidden="true"
-                />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <p className="text-xl font-semibold">Demilade Adewole</p>
-                  <p className="text-sm text-white/85">Building, learning, and making things work better.</p>
-                </div>
-              </div>
-
-              <div className="pt-5 px-1 pb-1">
-                <div className="flex items-start gap-3">
-                  <div
-                    className="mt-0.5 p-2 rounded-xl shrink-0"
-                    style={{
-                      backgroundColor: isDarkMode ? themeColors.colors.dark[700] : themeColors.colors.pink[50],
-                      color: themeColors.colors.pink[500]
-                    }}
-                  >
-                    <Sparkles size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold mb-1" style={{ color: themeColors.text.primary }}>
-                      What I care about
-                    </p>
-                    <p className="text-sm leading-relaxed" style={{ color: themeColors.text.secondary }}>
-                      Growing as an engineer, solving problems that actually matter, and creating technology that feels useful instead of complicated.
-                    </p>
-                  </div>
-                </div>
+          <div className="relative z-10 mx-auto w-full max-w-[540px]">
+            <div className="absolute -inset-5 rounded-[2.2rem] bg-[#ffdbe5] blur-3xl opacity-75" aria-hidden="true" />
+            <div className="absolute -right-7 -top-5 hidden grid-cols-4 gap-2 lg:grid" aria-hidden="true">
+              {Array.from({ length: 20 }).map((_, i) => <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#f9b6c7]" />)}
+            </div>
+            <div className="relative overflow-hidden rounded-[1.8rem] bg-[#f6eeee] p-2 shadow-[0_22px_60px_rgba(205,123,147,0.2)] ring-1 ring-[#f4d3dc]">
+              <img
+                src="https://avatars.githubusercontent.com/u/179845679?v=4&s=1000"
+                alt="Demilade Adewole"
+                className="aspect-[1/1.08] w-full rounded-[1.45rem] object-cover"
+                style={{ objectPosition: 'center 35%', filter: 'contrast(1.05) saturate(1.03) sharpen' as any }}
+              />
+              <div className="pointer-events-none absolute bottom-5 right-7 -rotate-6 text-right font-serif text-lg italic leading-6 text-white drop-shadow-md">
+                building for<br />people + purpose ♡
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div
-              className="absolute -bottom-4 -right-3 md:-right-6 px-4 py-2 rounded-full text-sm font-semibold shadow-lg rotate-2"
-              style={{
-                backgroundColor: themeColors.colors.pink[500],
-                color: themeColors.colors.white
-              }}
-            >
-              curious by nature ✦
-            </div>
+      <div className="bg-[#fff7f9] px-6 py-16 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2 className="font-serif text-4xl font-semibold text-[#1f1a1c] md:text-5xl">
+              What I&apos;m <span className="text-[#ef5f85]">passionate</span> about <span className="text-[#ef8eaa]">♡</span>
+            </h2>
+            <div className="mx-auto mt-3 h-[2px] w-56 bg-[#ef8eaa]" />
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+            {passions.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="flex gap-4 border-[#efdce2] xl:border-r xl:pr-6 last:border-r-0">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#ffdce6] text-[#191516]">
+                  <Icon size={29} strokeWidth={1.8} />
+                </div>
+                <div>
+                  <h3 className="mb-2 font-semibold text-[#231f20]">{title}</h3>
+                  <p className="text-sm leading-6 text-[#5c565a]">{text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
