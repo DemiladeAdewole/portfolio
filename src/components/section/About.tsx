@@ -29,10 +29,25 @@ const About = () => {
   const [profileSrc, setProfileSrc] = useState('');
 
   useEffect(() => {
-    fetch('/demilade-profile-new.b64')
-      .then((response) => response.text())
-      .then((base64) => setProfileSrc(`data:image/webp;base64,${base64.trim()}`))
-      .catch(() => setProfileSrc('/demilade-profile.webp'));
+    const loadProfile = async () => {
+      try {
+        const paths = [
+          '/profile-chunk-1.txt',
+          '/profile-chunk-2.txt',
+          '/profile-chunk-3.txt',
+          '/profile-chunk-4.txt'
+        ];
+        const responses = await Promise.all(paths.map((path) => fetch(path, { cache: 'no-store' })));
+        if (responses.some((response) => !response.ok)) throw new Error('Profile image failed to load');
+        const chunks = await Promise.all(responses.map((response) => response.text()));
+        const base64 = chunks.map((chunk) => chunk.trim()).join('');
+        setProfileSrc(`data:image/webp;base64,${base64}`);
+      } catch {
+        setProfileSrc('https://avatars.githubusercontent.com/u/179845679?v=4&s=1000');
+      }
+    };
+
+    loadProfile();
   }, []);
 
   return (
@@ -98,7 +113,7 @@ const About = () => {
                   src={profileSrc}
                   alt="Demilade Adewole"
                   className="aspect-[1/1.08] w-full rounded-[1.45rem] object-cover"
-                  style={{ objectPosition: 'center 35%' }}
+                  style={{ objectPosition: 'center 38%' }}
                 />
               ) : (
                 <div className="aspect-[1/1.08] w-full animate-pulse rounded-[1.45rem] bg-[#f3e7ea]" aria-label="Loading profile photo" />
