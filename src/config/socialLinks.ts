@@ -1,23 +1,19 @@
-// Social Links Configuration - uses environment variables only
 export const socialLinks = {
-  // Main social profiles
-  github: import.meta.env.VITE_GITHUB_URL,
-  linkedin: import.meta.env.VITE_LINKEDIN_URL,
-  email: import.meta.env.VITE_EMAIL,
-  
-  // GitHub repository URLs
+  github: 'https://github.com/DemiladeAdewole',
+  linkedin: 'https://www.linkedin.com/in/demilade-adewole/',
+  email: 'demilade.adewole1@gmail.com',
+  portfolio: 'https://portfolio-demi14.vercel.app/',
   repositories: {
-    projectOne: import.meta.env.VITE_GITHUB_PROJECT1_URL,
-    projectTwo: import.meta.env.VITE_GITHUB_PROJECT2_URL,
-    projectThree: import.meta.env.VITE_GITHUB_PROJECT3_URL,
-    projectFour: import.meta.env.VITE_GITHUB_PROJECT4_URL,
+    projectOne: 'https://github.com/DemiladeAdewole/portfolio',
+    projectTwo: '',
+    projectThree: '',
+    projectFour: '',
   },
-  
-  // Formatted display names (extracted from environment variables)
   display: {
-    github: import.meta.env.VITE_GITHUB_URL?.replace('https://', ''),
-    linkedin: import.meta.env.VITE_LINKEDIN_URL?.replace('https://', ''),
-    email: import.meta.env.VITE_EMAIL,
+    github: 'github.com/DemiladeAdewole',
+    linkedin: 'linkedin.com/in/demilade-adewole',
+    email: 'demilade.adewole1@gmail.com',
+    portfolio: 'portfolio-demi14.vercel.app',
   }
 };
 
