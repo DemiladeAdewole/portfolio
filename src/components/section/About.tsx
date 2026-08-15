@@ -84,10 +84,10 @@ const About = () => {
             </div>
             <div className="relative overflow-hidden rounded-[1.8rem] bg-[#f6eeee] p-2 shadow-[0_22px_60px_rgba(205,123,147,0.2)] ring-1 ring-[#f4d3dc]">
               <img
-                src="https://avatars.githubusercontent.com/u/179845679?v=4&s=1000"
+                src="/demilade-profile.webp"
                 alt="Demilade Adewole"
                 className="aspect-[1/1.08] w-full rounded-[1.45rem] object-cover"
-                style={{ objectPosition: 'center 35%', filter: 'contrast(1.05) saturate(1.03) sharpen' as any }}
+                style={{ objectPosition: 'center 35%', filter: 'contrast(1.02) saturate(1.02)' }}
               />
               <div className="pointer-events-none absolute bottom-5 right-7 -rotate-6 text-right font-serif text-lg italic leading-6 text-white drop-shadow-md">
                 building for<br />people + purpose ♡
