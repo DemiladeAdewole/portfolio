@@ -84,7 +84,7 @@ const About = () => {
             </div>
             <div className="relative overflow-hidden rounded-[1.8rem] bg-[#f6eeee] p-2 shadow-[0_22px_60px_rgba(205,123,147,0.2)] ring-1 ring-[#f4d3dc]">
               <img
-                src="/linkedin-profile.jpg"
+                src="/linkedin-profile-20260820.jpg"
                 alt="Demilade Adewole"
                 className="aspect-[1/1.08] w-full rounded-[1.45rem] object-cover"
                 style={{ objectPosition: 'center 34%' }}
